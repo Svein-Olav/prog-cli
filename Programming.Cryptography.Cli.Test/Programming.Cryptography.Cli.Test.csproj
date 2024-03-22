@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Programming.Datastructure.List\Programming.Datastructure.List.csproj" />
+    <ProjectReference Include="..\Programming.Cryptography.Cli\Programming.Cryptography.Cli.csproj" />
   </ItemGroup>
 
 </Project>

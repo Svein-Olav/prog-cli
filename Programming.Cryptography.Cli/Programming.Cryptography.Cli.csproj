@@ -8,11 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.13.12" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Programming.Datastructure.List\Programming.Datastructure.List.csproj" />
+    <PackageReference Include="Cocona" Version="2.2.0" />
   </ItemGroup>
 
 </Project>
