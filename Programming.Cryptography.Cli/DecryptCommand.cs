@@ -8,9 +8,9 @@ public class DecryptCommand
     }
 
     [Command("Decrypt")]
-    public void Decrypt(string tekst)
+    public void Decrypt(string key, string iv, string tekst)
     {
-        var decryptedText = _cryptographiService.Decrypt(tekst);
+        var decryptedText = _cryptographiService.Decrypt(String.Empty, String.Empty,  tekst);
         Console.WriteLine(decryptedText);
     }
     
