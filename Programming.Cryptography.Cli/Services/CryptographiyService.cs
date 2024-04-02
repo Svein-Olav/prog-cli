@@ -3,13 +3,13 @@ public class CryptographiService : ICryptographiService
     public string Encrypt(string data)
     {
         // Implement encryption logic here
-        throw new NotImplementedException();
+        return  "EncryptedData";
     }
 
     public string Decrypt(string encryptedData)
     {
         // Implement decryption logic here
-        throw new NotImplementedException();
+        return  "DecryptedData";
     }
 }
 
