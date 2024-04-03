@@ -12,6 +12,23 @@ public class FileService : IFileService
         File.WriteAllText(path, content);
     }
 
+    public string ReadAllByte(string path)
+    {
+        var binary = File.ReadAllBytes(path);
+        var returnValue = Convert.ToBase64String(binary);
+
+        return returnValue;
+    
+    }
+
+    public void WriteAllByte(string path, string content)
+    {
+        var binary = Convert.FromBase64String(content);
+        File.WriteAllBytes(path, binary);
+    }
+    
+
+
     private void CreateFile(string filePath)
     {
         File.Create(filePath);

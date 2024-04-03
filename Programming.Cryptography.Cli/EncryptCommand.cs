@@ -12,11 +12,15 @@ public class EncryptCommand
     [Command("Encrypt")]
     public void Encrypt(string keyFile, string ivFile, string tekst)
     {
-        var key = _fileService.ReadAllText(keyFile);
-        var iv = _fileService.ReadAllText(ivFile);
+        var key = _fileService.ReadAllByte(keyFile);
+        var iv = _fileService.ReadAllByte(ivFile);
         
         var encryptText = _cryptographiService.Encrypt(key, iv, tekst);
-        Console.WriteLine(encryptText);
+
+        byte[] encryptedBytes = Convert.FromBase64String(encryptText);
+        string hexString = BitConverter.ToString(encryptedBytes).Replace("-", "");
+        Console.WriteLine(hexString);
+        
     }
     
 }
