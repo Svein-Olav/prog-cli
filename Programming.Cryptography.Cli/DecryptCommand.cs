@@ -12,12 +12,12 @@ public class DecryptCommand
 
     [Command("Decrypt")]
     public void Decrypt(string keyFile, string ivFile, string tekst)
-    {
-        var key = _fileService.ReadAllByte(keyFile);
-        var iv = _fileService.ReadAllByte(ivFile);
+    {                        
+        var key = _fileService.ReadFile(keyFile);
+        var iv = _fileService.ReadFile(ivFile);
 
         var decryptedText = _cryptographiService.Decrypt(key, iv, tekst);
         Console.WriteLine(decryptedText);
-    }
+    }    
     
 }

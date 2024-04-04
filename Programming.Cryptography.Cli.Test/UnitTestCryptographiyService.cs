@@ -19,11 +19,7 @@ public class UnitTestCryptographiyService
 
     }
 
-    [Fact]
-    public void Encrypt()
-    {
-
-    }
+    
 
     
 

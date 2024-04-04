@@ -14,8 +14,8 @@ public class GenerateKeyCommand
     public void Execute()
     {
         var returnVerdi = _cryptographiService.GenerateKey();
-        _fileService.WriteAllText(@"c:\temp\key.txt", returnVerdi.Key);
-        _fileService.WriteAllText(@"c:\temp\iv.txt", returnVerdi.IV);
+        _fileService.WriteFile(@".\testfiles\key.dat", returnVerdi.Key);
+        _fileService.WriteFile(@".\testfiles\iv.dat", returnVerdi.IV);
 
         Console.WriteLine($"Key: {returnVerdi.Key}");
         Console.WriteLine($"IV: {returnVerdi.IV}");

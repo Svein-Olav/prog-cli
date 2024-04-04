@@ -1,46 +1,43 @@
 using System.IO;
 
 public class FileService : IFileService
-{
-    public string ReadAllText(string path)
+{    
+    public bool HasDatExtension(string path)
     {
-        return File.ReadAllText(path);
+        var extension = Path.GetExtension(path).ToLower();
+        return extension == ".dat";
     }
 
-    public void WriteAllText(string path, string content)
+    public string ReadFile(string path)
     {
-        File.WriteAllText(path, content);
+        IFileStrategy strategy = GetFileStrategy(path);
+        return ReadFile(strategy, path);
     }
 
-    public string ReadAllByte(string path)
+    public void WriteFile(string path, string content)
     {
-        var binary = File.ReadAllBytes(path);
-        var returnValue = Convert.ToBase64String(binary);
-
-        return returnValue;
-    
+        IFileStrategy strategy = GetFileStrategy(path);
+         WriteFile(strategy, path,content);     
     }
 
-    public void WriteAllByte(string path, string content)
+    private string ReadFile(IFileStrategy fileStrategy, string path)
     {
-        var binary = Convert.FromBase64String(content);
-        File.WriteAllBytes(path, binary);
-    }
-    
-
-
-    private void CreateFile(string filePath)
-    {
-        File.Create(filePath);
+        return fileStrategy.ReadFile(path);
     }
 
-    private void DeleteFile(string filePath)
+    private void WriteFile(IFileStrategy fileStrategy, string path, string content)
     {
-        File.Delete(filePath);
+        fileStrategy.WriteFile(path, content);     
     }
 
-    private bool FileExists(string filePath)
+    private IFileStrategy GetFileStrategy(string keyFile)
     {
-        return File.Exists(filePath);
-    }    
+        IFileStrategy fileStrategy = new TextFileStrategy();
+        if(HasDatExtension(keyFile) )
+        {
+             fileStrategy = new ByteFileStrategy();    
+        }
+        return fileStrategy;
+    }
 }
+    

@@ -1,7 +1,6 @@
 public interface IFileService
-{
-    string ReadAllText(string path);
-    void WriteAllText(string path, string content);
-    string ReadAllByte(string path);
-    void WriteAllByte(string path, string content);
+{    
+    string ReadFile(string path);
+    void WriteFile(string path, string content);
+    bool HasDatExtension(string path);
 }
