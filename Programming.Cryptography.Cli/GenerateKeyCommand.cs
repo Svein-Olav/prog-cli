@@ -10,7 +10,8 @@ public class GenerateKeyCommand
 
     }
 
-    [Command("Generatekey")]
+    
+    [Command("Generatekey", Description = "Generate a key and an IV. Example: dotnet run generatekey. The key and IV will be written to the files key.dat and iv.dat. In folder testfiles.")]
     public void Execute()
     {
         var returnVerdi = _cryptographiService.GenerateKey();

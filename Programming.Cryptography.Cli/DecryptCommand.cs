@@ -9,9 +9,12 @@ public class DecryptCommand
         _fileService = fileService;
         
     }
-
-    [Command("Decrypt")]
-    public void Decrypt(string keyFile, string ivFile, string tekst)
+    
+    [Command("Decrypt", Description = "Decrypt a text using a key and an IV. Example: dotnet run decrypt --key-file .\\testfiles\\key.dat .\\testfiles\\iv.dat \"YAU8va3yN4wL8CnneXVj4g==\"")]
+    public void Decrypt(
+        [Option(Description = "File containing the key")] string keyFile, 
+        [Option(Description = "File containing the IV")] string ivFile, 
+        [Argument(Description = "Your text to decrypt")] string tekst)
     {                        
         var key = _fileService.ReadFile(keyFile);
         var iv = _fileService.ReadFile(ivFile);

@@ -14,14 +14,11 @@ public class EncryptCommand
         _fileService = fileService;
     }
 
-    [Command("Encrypt", Description = "Encrypt a text using a key and an IV.\n Example: dotnet run encrypt .\\key.txt .\\iv.txt \"Hello World\"")]
+    [Command("Encrypt", Description = "Encrypt a text using a key and an IV. Example: dotnet run encrypt --key-file .\\testfiles\\key.dat .\\testfiles\\iv.dat \"sveinolav\"")]
     public void Encrypt(
-         [Argument(Description = "File containing the key")]
-         string keyFile, 
-         [Argument(Description = "File containing the IV")]
-         string ivFile, 
-         [Argument(Description = "Your text to encrypt")]
-         string tekst)
+         [Option(Description = "File containing the key")] string keyFile, 
+         [Option(Description = "File containing the IV")] string ivFile, 
+         [Argument(Description = "Your text to encrypt")] string tekst)
     {
                         
         var key = _fileService.ReadFile(keyFile);
