@@ -49,7 +49,7 @@ public class CryptographiService : ICryptographiService
 
     public (string Key, string IV) GenerateKey()
     {
-        using (var rm = new RijndaelManaged())
+        using (var rm = new RijndaelManaged()) 
         {
              rm.GenerateKey();
             var key = Convert.ToBase64String(rm.Key);
