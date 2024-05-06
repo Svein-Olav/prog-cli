@@ -15,7 +15,7 @@ public class EncryptCommand
     }
 
     [Command("Encrypt", Description = "Encrypt a text using a key and an IV. Example: dotnet run encrypt --key-file .\\testfiles\\key.dat .\\testfiles\\iv.dat \"sveinolav\"")]
-    public void Encrypt(
+    public string Encrypt(
          [Option(Description = "File containing the key")] string keyFile, 
          [Option(Description = "File containing the IV")] string ivFile, 
          [Argument(Description = "Your text to encrypt")] string tekst)
@@ -28,9 +28,11 @@ public class EncryptCommand
 
         byte[] encryptedBytes = Convert.FromBase64String(encryptText);
         string hexString = BitConverter.ToString(encryptedBytes).Replace("-", "");
-        Console.WriteLine(hexString);
-        Console.WriteLine(encryptText);
         
+        Console.WriteLine(hexString);
+
+        return hexString;
+
     }
 
     

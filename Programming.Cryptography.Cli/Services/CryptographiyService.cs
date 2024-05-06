@@ -81,7 +81,7 @@ public class CryptographiService : ICryptographiService
        return $"Key and Iv protected successfully using {currentUser} as the current user";
     }
 
-    public string unprotectkey(string keyfile, string ivfile)
+    public void unprotectkey(string keyfile, string ivfile)
     {
        
        var keyBytes = File.ReadAllBytes(keyfile);
@@ -100,7 +100,9 @@ public class CryptographiService : ICryptographiService
        File.WriteAllText(newPathIV, ivString);
        
        var currentUser = Environment.UserName;
-       return $"Key and Iv protected successfully using {currentUser} as the current user";
+
+        Console.WriteLine($"Key and Iv unprotected successfully using {currentUser} as the current user");
+        
     }
 
 

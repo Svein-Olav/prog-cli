@@ -5,11 +5,9 @@ public class TextFileStrategy : IFileStrategy
 {
     public string ReadFile(string filePath)
     {
-        string testFromFile = File.ReadAllText(filePath);
-        byte[] bytes = Encoding.Default.GetBytes(testFromFile);
-        string base64String = Convert.ToBase64String(bytes);
-
-        return base64String;
+        string textFromFile = File.ReadAllText(filePath);
+        
+        return textFromFile;
     }
 
     public void WriteFile(string filePath, string content)
