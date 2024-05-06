@@ -7,5 +7,9 @@ var app = builder.Build();
 app.AddCommands<DecryptCommand>();
 app.AddCommands<EncryptCommand>();
 app.AddCommands<GenerateKeyCommand>();
+app.AddCommands<UnprotectKeyCommand>();
+app.AddCommands<ProtectKeyCommand>();
 
 app.Run();
+
+

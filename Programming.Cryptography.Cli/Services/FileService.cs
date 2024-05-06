@@ -17,7 +17,7 @@ public class FileService : IFileService
     public void WriteFile(string path, string content)
     {
         IFileStrategy strategy = GetFileStrategy(path);
-         WriteFile(strategy, path,content);     
+        WriteFile(strategy, path,content);     
     }
 
     private string ReadFile(IFileStrategy fileStrategy, string path)
