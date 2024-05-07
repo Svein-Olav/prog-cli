@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Programming.Cryptography.Cli.Test;
 [Collection("FileFixture")]
-public class TestEncrypt
+public class TestDecrypt
    {
+
     private readonly string _testKatalog;
 
-    public TestEncrypt(FileFixture fileFixture)
+    public TestDecrypt(FileFixture fileFixture)
     {
-        _testKatalog = fileFixture.GetKatalog("TestEncryptCommand");
+        _testKatalog = fileFixture.GetKatalog("TestDecryptCommand");
     }
-
     [Fact]
         public void SimpleTest()
         {
@@ -22,13 +22,15 @@ public class TestEncrypt
             var CryptographiService = new CryptographiService();
             var FileService = new FileService();
 
-            var mut = new EncryptCommand(CryptographiService, FileService);
-        
+            var mut = new DecryptCommand(CryptographiService, FileService);             
 
-        // Act
-        var stringHexDec = mut.Encrypt($"{_testKatalog}/Key.unprotected", $"{_testKatalog}/Vector.unprotected", "TestString");
+            // Act
+            var dekryptertTekst = mut.Decrypt($"{_testKatalog}/Key.unprotected", $"{_testKatalog}/Vector.unprotected", "82A5193FCF471B6D78C20E0304C79C88");
+
 
             // Assert
-            Assert.Equal("82A5193FCF471B6D78C20E0304C79C88", stringHexDec);
+            Assert.Equal("TestString", dekryptertTekst);
+
+
         }
     }

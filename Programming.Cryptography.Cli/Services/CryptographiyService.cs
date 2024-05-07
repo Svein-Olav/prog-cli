@@ -30,13 +30,12 @@ public class CryptographiService : ICryptographiService
     {
         
        using (var rm = new RijndaelManaged())
-        {
-            
+        {            
             rm.Key = Convert.FromBase64String(key);
             rm.IV = Convert.FromBase64String(iv);
 
             var decryptor = rm.CreateDecryptor(rm.Key, rm.IV);
-            using (var ms = new MemoryStream(Convert.FromBase64String(encryptedData)))
+            using (var ms = new MemoryStream(HexStringToByteArray(encryptedData)))
             {
                 using (var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
                 {
@@ -48,6 +47,8 @@ public class CryptographiService : ICryptographiService
             }
         }
     }
+
+    
 
     public (string Key, string IV) GenerateKey()
     {
@@ -68,17 +69,17 @@ public class CryptographiService : ICryptographiService
        var keyBytes = File.ReadAllBytes(keyfile);
        var IVbytes = File.ReadAllBytes(ivfile);
 
-       var unprotectedKey = ProtectedData.Protect(keyBytes, null, DataProtectionScope.CurrentUser);
-       var unprotectedIV = ProtectedData.Protect(IVbytes, null, DataProtectionScope.CurrentUser);
+       var protectedKey = ProtectedData.Protect(keyBytes, null, DataProtectionScope.CurrentUser);
+       var protectedIV = ProtectedData.Protect(IVbytes, null, DataProtectionScope.CurrentUser);
 
-       var newPathKey = Path.ChangeExtension(keyfile, ".protected");
-       File.WriteAllBytes(newPathKey, unprotectedKey);
+       var newPathKey = Path.ChangeExtension(keyfile, ".dat");
+       File.WriteAllBytes(newPathKey, protectedKey);
 
-       var newPathIV = Path.ChangeExtension(ivfile, ".protected");
-       File.WriteAllBytes(newPathIV, unprotectedKey);
+       var newPathIV = Path.ChangeExtension(ivfile, ".dat");
+       File.WriteAllBytes(newPathIV, protectedIV);
        
        var currentUser = Environment.UserName;
-       return $"Key and Iv protected successfully using {currentUser} as the current user";
+       return currentUser;
     }
 
     public void unprotectkey(string keyfile, string ivfile)
@@ -90,19 +91,24 @@ public class CryptographiService : ICryptographiService
        var unprotectedKey = ProtectedData.Unprotect(keyBytes, null, DataProtectionScope.CurrentUser);
        var unprotectedIV = ProtectedData.Unprotect(IVbytes, null, DataProtectionScope.CurrentUser);
 
-       string keyString = Convert.ToBase64String(unprotectedKey);
-       string ivString = Convert.ToBase64String(unprotectedIV);
-
+   
        var newPathKey = Path.ChangeExtension(keyfile, ".unprotected");
-       File.WriteAllText(newPathKey, keyString);
+       File.WriteAllBytes(newPathKey, unprotectedKey);
 
        var newPathIV = Path.ChangeExtension(ivfile, ".unprotected");
-       File.WriteAllText(newPathIV, ivString);
+       File.WriteAllBytes(newPathIV, unprotectedIV);
        
        var currentUser = Environment.UserName;
 
         Console.WriteLine($"Key and Iv unprotected successfully using {currentUser} as the current user");
         
+    }
+
+    private static byte[] HexStringToByteArray(string hex)
+    {
+        return (from x in Enumerable.Range(0, hex.Length)
+                where x % 2 == 0
+                select Convert.ToByte(hex.Substring(x, 2), 16)).ToArray();
     }
 
 

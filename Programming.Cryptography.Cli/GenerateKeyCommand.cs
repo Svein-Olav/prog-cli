@@ -12,14 +12,11 @@ public class GenerateKeyCommand
 
     
     [Command("Generatekey", Description = "Generate a key and an IV. Example: dotnet run generatekey. The key and IV will be written to the files key.dat and iv.dat. In folder testfiles.")]
-    public void Execute([Option(Description = "Outputfolder")] string folder = @".\")
+    public void GenerateKey([Option(Description = "Outputfolder")] string folder = @".\")
     {
         var returnVerdi = _cryptographiService.GenerateKey();
         _fileService.WriteFile(@$"{folder}\Key.unprotected", returnVerdi.Key);
         _fileService.WriteFile(@$"{folder}\Vector.unprotected", returnVerdi.IV);
-
-        Console.WriteLine($"Key: {returnVerdi.Key}");
-        Console.WriteLine($"IV: {returnVerdi.IV}");
 
     }
     

@@ -27,13 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="testfiles\Key.dat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="testfiles\Key.unprotected">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="testfiles\Vector.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="testfiles\Vector.unprotected">
