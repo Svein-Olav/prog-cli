@@ -26,15 +26,11 @@ public class EncryptCommand
         
         var encryptText = _cryptographiService.Encrypt(key, iv, tekst);
 
-        byte[] encryptedBytes = Convert.FromBase64String(encryptText);
-        string hexString = BitConverter.ToString(encryptedBytes).Replace("-", "");
-        
-        Console.WriteLine(hexString);
-
-        return hexString;
+        return encryptText;
 
     }
 
     
-    
+
+
 }

@@ -21,7 +21,8 @@ public class CryptographiService : ICryptographiService
                         sw.Write(data);
                     }
                 }
-                return Convert.ToBase64String(ms.ToArray());
+                //return Convert.ToBase64String(ms.ToArray());
+                return BitConverter.ToString(ms.ToArray()).Replace("-", "");
             }
         }       
     }
