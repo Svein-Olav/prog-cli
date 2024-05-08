@@ -26,12 +26,12 @@ public class TestGenerateKeyCommand
         var CryptographiService = new CryptographiService();
             var FileService = new FileService();
 
-            var mut = new GenerateKeyCommand(CryptographiService, FileService);
+            var sut = new GenerateKeyCommand(CryptographiService, FileService);
           
 
 
             // Act
-                mut.GenerateKey($"{_testKatalog}");
+                sut.GenerateKey($"{_testKatalog}");
 
 
         // Assert

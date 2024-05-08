@@ -23,10 +23,10 @@ public class TestProtectCommand
         var CryptographiService = new CryptographiService();
         var FileService = new FileService();
 
-        var mut = new ProtectKeyCommand(CryptographiService, FileService);
+        var sut = new ProtectKeyCommand(CryptographiService, FileService);
 
         // Act
-        var user = mut.ProtectKey($"{_testKatalog}/Key.unprotected", $"{_testKatalog}/Vector.unprotected");
+        var user = sut.ProtectKey($"{_testKatalog}/Key.unprotected", $"{_testKatalog}/Vector.unprotected");
 
 
         // Assert

@@ -11,9 +11,8 @@ public class ProtectKeyCommand
     }
 
     
-    [Command("Protectkey", 
-            Description = @"Protects the key so that only the user kan decrypt the files containing the key, 
-                            Example: dotnet run protectkey. The key and IV will be written to the files key.protected and iv.proteced. In folder testfiles.")]
+    [Command("Protectkey", Description = @"Bruker DPAPI for å beskytte filene med Key og IV. Key and IV blir skrevet til filene Key.dat og Vector.dat. Det er kun brukeren som har tilgang til filene og de kan ikke flyttes til en annen maskin.
+                                                                    Example: dotnet run protectkey. ")]
     public string ProtectKey(
         [Option(Description = "File containing the key")] string keyFile, 
         [Option(Description = "File containing the IV")] string ivFile)

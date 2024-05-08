@@ -6,15 +6,15 @@ public class UnitTestCryptographiyService
     public void Decrypt()
     {
         // Arrange
-        ICryptographiService mut = new CryptographiService(); 
-        var key = mut.GenerateKey();
+        ICryptographiService sut = new CryptographiService(); 
+        var key = sut.GenerateKey();
 
         // Act
 
-        var returValue = mut.Encrypt(key.Key, key.IV, "Hello World");
+        var returValue = sut.Encrypt(key.Key, key.IV, "Hello World");
 
         // Assert
-        Assert.Equal("Hello World", mut.Decrypt(key.Key, key.IV, returValue));
+        Assert.Equal("Hello World", sut.Decrypt(key.Key, key.IV, returValue));
 
 
     }

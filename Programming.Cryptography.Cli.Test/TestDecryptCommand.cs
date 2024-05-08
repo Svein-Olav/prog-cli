@@ -22,10 +22,10 @@ public class TestDecrypt
             var CryptographiService = new CryptographiService();
             var FileService = new FileService();
 
-            var mut = new DecryptCommand(CryptographiService, FileService);             
+            var sut = new DecryptCommand(CryptographiService, FileService);             
 
             // Act
-            var dekryptertTekst = mut.Decrypt($"{_testKatalog}/Key.unprotected", $"{_testKatalog}/Vector.unprotected", "82A5193FCF471B6D78C20E0304C79C88");
+            var dekryptertTekst = sut.Decrypt($"{_testKatalog}/Key.unprotected", $"{_testKatalog}/Vector.unprotected", "82A5193FCF471B6D78C20E0304C79C88");
 
 
             // Assert

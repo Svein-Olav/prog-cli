@@ -1,6 +1,7 @@
 using Cocona;
 using Cocona.Command;
 using Cocona.Help.DocumentModel;
+using System;
 
 
 public class EncryptCommand
@@ -14,11 +15,11 @@ public class EncryptCommand
         _fileService = fileService;
     }
 
-    [Command("Encrypt", Description = "Encrypt a text using a key and an IV. Example: dotnet run encrypt --key-file .\\testfiles\\key.dat .\\testfiles\\iv.dat \"sveinolav\"")]
+    [Command("Encrypt", Description = "Krypterer tekst ved å bruke Key and an IV. Eksempel: dotnet run encrypt --key-file .\\testfiles\\key.unprotected .\\testfiles\\vector.unprotected \"teststreng\"")]
     public string Encrypt(
-         [Option(Description = "File containing the key")] string keyFile, 
-         [Option(Description = "File containing the IV")] string ivFile, 
-         [Argument(Description = "Your text to encrypt")] string tekst)
+         [Option(Description = "File som inneholder Key på base64format")] string keyFile, 
+         [Option(Description = "FFile som inneholder IV på base64format")] string ivFile, 
+         [Argument(Description = "Tekst som skal krypteres")] string tekst)
     {
                         
         var key = _fileService.ReadFile(keyFile);
@@ -26,6 +27,7 @@ public class EncryptCommand
         
         var encryptText = _cryptographiService.Encrypt(key, iv, tekst);
 
+        Console.WriteLine(encryptText);
         return encryptText;
 
     }

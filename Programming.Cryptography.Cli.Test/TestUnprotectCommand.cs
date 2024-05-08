@@ -31,11 +31,11 @@ public class TestUnprotectCommand
         File.Delete($"{_testKatalog}/Key.unprotected");
         File.Delete($"{_testKatalog}/Vector.unprotected");    
 
-        var mut = new UnprotectKeyCommand(CryptographiService, FileService);
+        var sut = new UnprotectKeyCommand(CryptographiService, FileService);
              
 
         // Act
-            mut.UnprotectKey($"{_testKatalog}/Key.dat", $"{_testKatalog}/Vector.dat");
+            sut.UnprotectKey($"{_testKatalog}/Key.dat", $"{_testKatalog}/Vector.dat");
 
 
 
