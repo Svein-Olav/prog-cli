@@ -12,9 +12,9 @@ public class ProtectKeyCommand
 
     
     [Command("Protectkey", Description = @"Bruker DPAPI for å beskytte filene med Key og IV. Key and IV blir skrevet til filene Key.dat og Vector.dat. Det er kun brukeren som har tilgang til filene og de kan ikke flyttes til en annen maskin.
-                                                                    Example: dotnet run protectkey. ")]
+                                                                    Example: .\krypttool.exe protectkey --key-file Key.unprotected --iv-file Vector.unproteced ")]
     public string ProtectKey(
-        [Option(Description = "File containing the key")] string keyFile, 
+        [Option(Description = "Fil som inneholder ")] string keyFile, 
         [Option(Description = "File containing the IV")] string ivFile)
     {        
         var user = _cryptographiService.protectkey(keyFile, ivFile);

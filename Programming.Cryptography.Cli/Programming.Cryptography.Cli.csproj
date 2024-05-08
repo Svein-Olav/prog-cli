@@ -7,6 +7,7 @@
     <Nullable>enable</Nullable>
     <PackageId>krypto</PackageId>
     <PublishAot>False</PublishAot>
+    <AssemblyName>krypttool</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

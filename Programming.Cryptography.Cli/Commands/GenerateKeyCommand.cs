@@ -11,7 +11,7 @@ public class GenerateKeyCommand
     }
 
     
-    [Command("Generatekey", Description = "Lager ny Key og IV. Example: dotnet run generatekey. Key and IV vil bli skrevet til filene Key.unprotected and Vector.unprotected. Nøkkel og vektor er på base64format.")]
+    [Command("Generatekey", Description = "Lager ny Key og IV. Example: .\\krypttool.exe generatekey. Key and IV vil bli skrevet til filene Key.unprotected and Vector.unprotected. Nøkkel og vektor er på base64format.")]
     public void GenerateKey([Option(Description = "Katalog hvor nøkkelen blir lagret")] string folder = @".\")
     {
         var returnVerdi = _cryptographiService.GenerateKey();
