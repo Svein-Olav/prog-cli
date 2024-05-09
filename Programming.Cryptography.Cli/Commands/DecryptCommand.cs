@@ -10,7 +10,7 @@ public class DecryptCommand
         
     }
     
-    [Command("Decrypt", Description = "Dekrypterer en tekst ved brukt av Key og IV vektor Eksempel: .\\krypttool.exe decrypt --key-file .\\testfiles\\Key.unprotected .\\testfiles\\Vecktor.unprotected \"YAU8va3yN4wL8CnneXVj4g==\"")]
+    [Command("Decrypt", Description = "Dekrypterer en tekst ved brukt av Key og IV vektor")]
     public string Decrypt(
         [Option(Description = "File som inneholder Key på base64format")] string keyFile, 
         [Option(Description = "File som inneholder IV vektor på base64format ")] string ivFile, 
