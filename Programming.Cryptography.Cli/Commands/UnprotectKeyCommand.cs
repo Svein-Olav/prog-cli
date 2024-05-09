@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Hosting;
+
 public class UnprotectKeyCommand
 {
     private readonly ICryptographiService _cryptographiService;
@@ -12,11 +14,10 @@ public class UnprotectKeyCommand
 
     
     [Command("Unprotectkey", 
-            Description = @"Protects the key so that only the user kan decrypt the files containing the key, 
-                            Example: .\krypttool.exe protectkey. The key and IV will be written to the files key.unprotected and iv.unprotected. In folder testfiles.")]
+            Description = @"Denne kommandoen gjør det mulig å om gjøre en proteced fil dvs .dat til en vanlig lesbar fil.")]
     public void UnprotectKey(
-        [Option(Description = "File som inneholder Key på base64format")] string keyFile, 
-        [Option(Description = "File som inneholder IV på base64format")] string ivFile)
+        [Option(Description = "File som inneholder kryptert key (Key.dat)")] string keyFile, 
+        [Option(Description = "File som inneholder kryptert vector (Vector.dat) ")] string ivFile)
     {
         if (!_fileService.HasDatExtension(keyFile) || !_fileService.HasDatExtension(ivFile))
         {
@@ -24,7 +25,10 @@ public class UnprotectKeyCommand
             return;
         }
         
-        _cryptographiService.unprotectkey(keyFile, ivFile);        
+        _cryptographiService.unprotectkey(keyFile, ivFile);
+
+        var currentUser = Environment.UserName;
+        Console.WriteLine($"Key og IV ble dekryptert med bruker {currentUser}");
 
     }    
 }

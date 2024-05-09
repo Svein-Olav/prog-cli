@@ -15,11 +15,11 @@ public class EncryptCommand
         _fileService = fileService;
     }
 
-    [Command("Encrypt", Description = "Krypterer tekst ved å bruke Key and an IV. Eksempel: .\\krypttool.exe encrypt --key-file .\\testfiles\\key.unprotected .\\testfiles\\vector.unprotected \"teststreng\"")]
+    [Command("Encrypt", Description = "Krypterer tekst ved å bruke Key.unprotected og Vector.unprotected. Krypterttekst blir skrevet til skjerm.")]
     public string Encrypt(
-         [Option(Description = "File som inneholder Key på base64format")] string keyFile, 
-         [Option(Description = "File som inneholder IV på base64format")] string ivFile, 
-         [Argument(Description = "Tekst som skal krypteres")] string tekst)
+         [Option(Description = "File som inneholder Key på base64format (Key.unprotected)")] string keyFile, 
+         [Option(Description = "File som inneholder IV på base64format (Vector.unprotected)")] string ivFile, 
+         [Argument(Description = @"Tekst som skal krypteres (""TestTekst"")")] string tekst)
     {
                         
         var key = _fileService.ReadFile(keyFile);

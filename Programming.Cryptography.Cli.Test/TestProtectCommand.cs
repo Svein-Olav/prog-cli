@@ -26,13 +26,12 @@ public class TestProtectCommand
         var sut = new ProtectKeyCommand(CryptographiService, FileService);
 
         // Act
-        var user = sut.ProtectKey($"{_testKatalog}/Key.unprotected", $"{_testKatalog}/Vector.unprotected");
+        sut.ProtectKey($"{_testKatalog}/Key.unprotected", $"{_testKatalog}/Vector.unprotected");
 
 
         // Assert
         Assert.True(File.Exists($"{_testKatalog}/Key.dat"));
-        Assert.True(File.Exists($"{_testKatalog}/Vector.dat"));
-        Assert.Equal(user, Environment.UserName);
+        Assert.True(File.Exists($"{_testKatalog}/Vector.dat"));        
 
     }
 }

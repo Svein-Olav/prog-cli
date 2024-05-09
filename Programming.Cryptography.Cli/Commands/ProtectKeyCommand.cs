@@ -11,14 +11,17 @@ public class ProtectKeyCommand
     }
 
     
-    [Command("Protectkey", Description = @"Bruker DPAPI for å beskytte filene med Key og IV. Key and IV blir skrevet til filene Key.dat og Vector.dat. Det er kun brukeren som har tilgang til filene og de kan ikke flyttes til en annen maskin.
-                                                                    Example: .\krypttool.exe protectkey --key-file Key.unprotected --iv-file Vector.unproteced ")]
-    public string ProtectKey(
-        [Option(Description = "Fil som inneholder ")] string keyFile, 
-        [Option(Description = "File containing the IV")] string ivFile)
+    [Command("Protectkey", Description = @"Bruker DPAPI for å beskytte filene med Key.unprotected og Vector.unprotected. Key.unprotected and Vector.unprotected blir skrevet til filene Key.dat og Vector.dat. Det er kun brukeren som har tilgang til filene og filene kan ikke flyttes til en annen maskin.")]
+    public void  ProtectKey(
+        [Option(Description = "Key.unprotected fil ")] string keyFile, 
+        [Option(Description = "Vector.unprotected fil")] string ivFile)
     {        
-        var user = _cryptographiService.protectkey(keyFile, ivFile);
-        return user;
+        
+        _cryptographiService.protectkey(keyFile, ivFile);
+
+        var currentUser = Environment.UserName;
+        Console.WriteLine($"Key og IV ble kryptert med bruker {currentUser}");
+        
 
     }
     

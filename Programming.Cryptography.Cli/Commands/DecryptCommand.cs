@@ -1,3 +1,5 @@
+using Cocona;
+
 public class DecryptCommand
 {
     private readonly ICryptographiService _cryptographiService;
@@ -10,11 +12,11 @@ public class DecryptCommand
         
     }
     
-    [Command("Decrypt", Description = "Dekrypterer en tekst ved brukt av Key og IV vektor")]
+    [Command("Decrypt", Description = "Dekrypterer en tekst ved hjelp av Key.unprotected og Vektor.unprotected")]   
     public string Decrypt(
-        [Option(Description = "File som inneholder Key på base64format")] string keyFile, 
-        [Option(Description = "File som inneholder IV vektor på base64format ")] string ivFile, 
-        [Argument(Description = "Tekst som skal dekrypteres")] string kryptertTekst)
+        [Option(Description = "File som inneholder Key på base64format (Key.unprotected)")] string keyFile, 
+        [Option(Description = "File som inneholder IV vektor på base64format (Vector.unprotected)")] string ivFile, 
+        [Argument(Description = @"Tekst som skal dekrypteres (""YAU8va3yN4wL8CnneXVj4g=="")")] string kryptertTekst)
     {                        
         var key = _fileService.ReadFile(keyFile);
         var iv = _fileService.ReadFile(ivFile);

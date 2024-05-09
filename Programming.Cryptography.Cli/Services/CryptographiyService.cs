@@ -65,7 +65,7 @@ public class CryptographiService : ICryptographiService
         }
     }
 
-    public string protectkey(string keyfile, string ivfile)
+    public void protectkey(string keyfile, string ivfile)
     {
        var keyBytes = File.ReadAllBytes(keyfile);
        var IVbytes = File.ReadAllBytes(ivfile);
@@ -77,10 +77,7 @@ public class CryptographiService : ICryptographiService
        File.WriteAllBytes(newPathKey, protectedKey);
 
        var newPathIV = Path.ChangeExtension(ivfile, ".dat");
-       File.WriteAllBytes(newPathIV, protectedIV);
-       
-       var currentUser = Environment.UserName;
-       return currentUser;
+       File.WriteAllBytes(newPathIV, protectedIV);              
     }
 
     public void unprotectkey(string keyfile, string ivfile)
@@ -98,11 +95,7 @@ public class CryptographiService : ICryptographiService
 
        var newPathIV = Path.ChangeExtension(ivfile, ".unprotected");
        File.WriteAllBytes(newPathIV, unprotectedIV);
-       
-       var currentUser = Environment.UserName;
-
-        Console.WriteLine($"Key and Iv unprotected successfully using {currentUser} as the current user");
-        
+                            
     }
 
     private static byte[] HexStringToByteArray(string hex)
